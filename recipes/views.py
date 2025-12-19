@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.urls import path
 from django.http import HttpResponse
 
 # HTTP Requests --> Response
 def home(requests): 
-    return HttpResponse("Hello World, Django!")
+    return render(requests, 'recipes/home.html')
 
 def contato(requests):
     return HttpResponse("Contato")
