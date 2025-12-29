@@ -4,6 +4,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.home),
-    path('recipes/<int:id>/', views.recipe)
+    path('', views.home, name='recipes-home'),
+    path('recipes/<int:id>/', views.recipe, name='recipes-recipe')
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

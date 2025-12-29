@@ -1,15 +1,21 @@
 <div class="recipe recipe-list-item">
     <div class="recipe-cover">
-        <img src="https://images.pexels.com/photos/3616956/pexels-photo-3616956.jpeg?cs=srgb&dl=pexels-daniel-reche-718241-3616956.jpg&fm=jpg"
-            alt="Temporário">
+        <a href="{% url 'recipes-recipe' recipe.id %}">
+            <img src='https://images.pexels.com/photos/3616956/pexels-photo-3616956.jpeg?cs=srgb&dl=pexels-daniel-reche-718241-3616956.jpg&fm=jpg' alt="Temporário">
+        </a>
     </div>
     <div class="recipe-title-container">
-        <h2 class="recipe-title">{{ recipe.title }}</h2>
+        <h2 class="recipe-title">
+            <a href="{% url 'recipes-recipe' recipe.id %}">
+                {{ recipe.title }}
+            </a>
+        </h2>
     </div>
 
     <div class="recipe-author">
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
+            
             Renan Alves
         </span>
         <span class="recipe-author-item">
@@ -42,12 +48,18 @@
             </div>
         </div>
     </div>
+    {% if is_detail_page is not True %}
+        <footer class="recipe-footer">
+            <a class="recipe-read-more button button-dark button-full-width" href="{% url 'recipes-recipe' recipe.id %}">
+                <i class="fas fa-eye"></i>
+                <span>ver mais...</span>
+            </a>
+        </footer>
+    {% endif %}
 
-    <footer class="recipe-footer">
-        <a class="recipe-read-more button button-dark button-full-width" href="/recipes/3/">
-            <i class="fas fa-eye"></i>
-            <span>ver mais...</span>
-        </a>
-    </footer>
-
+    {%if is_detail_page is True %}
+        <div class="preparation-steps">
+            {{ recipe.preparation_steps|linebreaksbr }}
+        </div>
+    {% endif %}
 </div>
